@@ -97,6 +97,7 @@
                             <includes>
                                 <!-- Analyze class files only to exclude shaded agent JAR from report -->
                                 <include>**/*Test.java</include>
+                                <include>**/*Tests.java</include>
                             </includes>
 
                         </configuration>
