@@ -31,10 +31,16 @@ pipeline {
 
 stage('JUNit Reports') {
             steps {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'target/surefire-reports/TEST-*.xml'
 		                echo "Publishing JUnit reports"
             }
         }
+         stage('Jacoco Reports') {
+                    steps {
+                          jacoco()
+                          echo "Publishing Jacoco Code Coverage Reports";
+                    }
+                }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'sql') {
