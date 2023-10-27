@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
-@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class InvoiceRepositoryTests {
 
     @Autowired
