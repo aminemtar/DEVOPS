@@ -91,6 +91,15 @@
                             <goal>prepare-agent</goal>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <title>JaCoCo</title>
+                            <footer>Code Coverage Report for JaCoCo ${project.version}</footer>
+                            <includes>
+                                <!-- Analyze class files only to exclude shaded agent JAR from report -->
+                                <include>**/*.class</include>
+                            </includes>
+
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
