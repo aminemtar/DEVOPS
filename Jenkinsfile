@@ -23,5 +23,12 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sql') {
+                    sh 'sonar-scanner'
+                }
+            }
+        }
     }
  }
