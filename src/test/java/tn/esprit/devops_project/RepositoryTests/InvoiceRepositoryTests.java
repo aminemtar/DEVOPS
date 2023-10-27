@@ -1,4 +1,4 @@
-package tn.esprit.devops_project;
+package tn.esprit.devops_project.RepositoryTests;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
