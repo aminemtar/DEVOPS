@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import static org.mockito.Mockito.*;
-@SpringBootTest
+
 @ExtendWith(MockitoExtension.class)
 public class InvoiceServiceImplTest {
 
