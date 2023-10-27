@@ -18,9 +18,11 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
 public class Invoice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
