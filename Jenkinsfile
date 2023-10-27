@@ -26,7 +26,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sql') {
-                    sh 'sonar-scanner'
+                    sh '/opt/homebrew/bin/sonar-scanner'
                 }
             }
         }
