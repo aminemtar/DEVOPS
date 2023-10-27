@@ -25,7 +25,7 @@ pipeline {
         }
          stage('JUNit Reports') {
                     steps {
-                            junit 'target/surefire-reports/*.xml'
+                            junit 'tests/results/*.xml'
         		                echo "Publishing JUnit reports"
                     }
                 }
