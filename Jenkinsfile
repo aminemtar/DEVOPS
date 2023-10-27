@@ -27,7 +27,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(installationName:'sql') {
                 sh 'chmod +x ./mvnw'
-                    sh 'mvn compile sonar:sonar'
+                    sh 'mvn package sonar:sonar'
                 }
             }
         }
