@@ -37,6 +37,20 @@ public class InvoiceRepositoryTests {
         Assertions.assertThat(savedInvoice).isNotNull();
         Assertions.assertThat(savedInvoice.getIdInvoice()).isGreaterThan(0);
     }
+    @Test
+    public void addInvoic(){
+        Invoice invoice = Invoice.builder()
+                .idInvoice(1L)
+                .amountDiscount(10.0f)
+                .amountInvoice(100.0f)
+                .dateCreationInvoice(new Date())
+                .dateLastModificationInvoice(new Date())
+                .archived(false)
+                .build();
+        Invoice savedInvoice = invoiceRepository.save(invoice);
+        Assertions.assertThat(savedInvoice).isNotNull();
+        Assertions.assertThat(savedInvoice.getIdInvoice()).isGreaterThan(0);
+    }
 
     @Test
     public void GetAll_ReturnMoreThenOneInvoice(){
