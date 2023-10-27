@@ -2,13 +2,10 @@ package tn.esprit.devops_project.RepositoryTest;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
 import tn.esprit.devops_project.services.InvoiceServiceImpl;
@@ -16,10 +13,7 @@ import tn.esprit.devops_project.services.InvoiceServiceImpl;
 import java.util.Date;
 import java.util.List;
 
-
-
 @SpringBootTest
-@AutoConfigureMockMvc
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class InvoiceRepositoryTests {
 

@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.junit4.SpringRunner;
 import tn.esprit.devops_project.entities.Invoice;
 import tn.esprit.devops_project.repositories.InvoiceRepository;
 import tn.esprit.devops_project.repositories.OperatorRepository;
@@ -27,9 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.mockito.Mockito.*;
 
-
-@SpringBootTest
-@AutoConfigureMockMvc
 @ExtendWith(MockitoExtension.class)
 public class InvoiceServiceImplTest {
 
