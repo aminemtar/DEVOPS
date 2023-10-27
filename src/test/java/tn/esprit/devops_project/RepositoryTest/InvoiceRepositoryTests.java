@@ -1,4 +1,4 @@
-package tn.esprit.devops_project.RepositoryTests;
+package tn.esprit.devops_project.RepositoryTest;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -60,7 +60,7 @@ public class InvoiceRepositoryTests {
         List<Invoice> pokemonList = invoiceRepository.findAll();
 
         Assertions.assertThat(pokemonList).isNotNull();
-       // Assertions.assertThat(pokemonList.size()).isEqualTo(2);
+        // Assertions.assertThat(pokemonList.size()).isEqualTo(2);
     }
     @Test
     public void InvoiceRepository_FindByType_ReturnInvoiceNotNull() {
@@ -81,3 +81,4 @@ public class InvoiceRepositoryTests {
 
 
 }
+

@@ -1,4 +1,5 @@
-package tn.esprit.devops_project.ServiceTests;
+package tn.esprit.devops_project.ServiceTest;
+
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import static org.mockito.Mockito.*;
-
+@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class InvoiceServiceImplTest {
 
@@ -52,3 +53,5 @@ public class InvoiceServiceImplTest {
 
 
 }
+
+
