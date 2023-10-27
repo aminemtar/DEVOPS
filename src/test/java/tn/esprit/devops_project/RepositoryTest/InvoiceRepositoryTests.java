@@ -28,9 +28,7 @@ public class InvoiceRepositoryTests {
 
     @Autowired
     private InvoiceRepository invoiceRepository;
-    @Test
-    void contextLoads() {
-    }
+
     @Test
     public void addInvoice(){
         Invoice invoice = Invoice.builder()

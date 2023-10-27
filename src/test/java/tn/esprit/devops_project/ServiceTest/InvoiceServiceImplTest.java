@@ -36,9 +36,7 @@ public class InvoiceServiceImplTest {
     @InjectMocks
     private InvoiceServiceImpl invoiceService;
 
-    @Test
-    void contextLoads() {
-    }
+
     @Mock
     private InvoiceRepository invoiceRepository;
 
