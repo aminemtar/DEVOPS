@@ -36,27 +36,11 @@ stage('JUNit Reports') {
             }
         }
          stage('Jacoco Reports') {
-             steps {
-                 jacoco()
-                 echo "Generating Jacoco Code Coverage Reports";
-             }
-             post {
-                 always {
-                     // Archive Jacoco code coverage reports
-                     archiveArtifacts(artifacts: '**/target/site/jacoco/*', allowEmptyArchive: true)
-
-                     // Publish Jacoco code coverage reports
-                     publishHTML([
-                         allowMissing: true,
-                         alwaysLinkToLastBuild: true,
-                         keepAll: true,
-                         reportDir: 'target/site/jacoco/',
-                         reportFiles: 'index.html',
-                         reportName: 'Code Coverage Report',
-                     ])
-                 }
-             }
-         }
+                    steps {
+                          jacoco()
+                          echo "Publishing Jacoco Code Coverage Reports";
+                    }
+                }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'sql') {
