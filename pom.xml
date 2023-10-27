@@ -15,7 +15,7 @@
     <description>DevOps_Project</description>
     <properties>
         <java.version>11</java.version>
-        <sonar.tests>src/main/test</sonar.tests>
+        <sonar.tests>src/test/java</sonar.tests>
 
     </properties>
     <dependencies>
