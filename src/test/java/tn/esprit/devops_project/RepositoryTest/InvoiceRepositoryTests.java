@@ -16,7 +16,7 @@ import tn.esprit.devops_project.services.InvoiceServiceImpl;
 import java.util.Date;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
