@@ -29,7 +29,12 @@ pipeline {
             }
         }
 
-
+stage('JUNit Reports') {
+            steps {
+                    junit 'target/surefire-reports/*.xml'
+		                echo "Publishing JUnit reports"
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'sql') {
