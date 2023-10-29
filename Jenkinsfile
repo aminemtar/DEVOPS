@@ -37,7 +37,7 @@ stage('JUNit Reports') {
         }
          stage('Jacoco Reports') {
                     steps {
-                          jacoco()
+                          jacoco(execPattern: '**/target/*.exec',)
                           echo "Publishing Jacoco Code Coverage Reports";
                     }
                 }

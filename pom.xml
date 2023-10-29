@@ -95,14 +95,6 @@
                         <configuration>
                             <title>JaCoCo</title>
                             <footer>Code Coverage Report for JaCoCo ${project.version}</footer>
-                            <includes>
-                                <!-- Analyze class files only to exclude shaded agent JAR from report -->
-                                <include>**/*Test.java</include>
-                                <include>**/*Tests.java</include>
-                                <include>*/test/*</include>
-                                <include>**/NotIncludedByDefault.java</include>
-                                <include> %regex[.*Test.*|.*Not.*]</include>
-                            </includes>
 
                         </configuration>
                     </execution>
