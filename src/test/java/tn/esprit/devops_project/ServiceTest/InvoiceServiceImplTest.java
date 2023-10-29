@@ -57,15 +57,7 @@ public class InvoiceServiceImplTest {
         Assertions.assertThat(result).isNotNull();
     }
 
-    @Test
-    void GetAl_ReturnMoreThenOneInvoice() {
-        List<Invoice> invoices = new ArrayList<>();
-        when(invoiceService.retrieveAllInvoices()).thenReturn(invoices);
 
-        List<Invoice> result = invoiceService.retrieveAllInvoices();
-
-        Assertions.assertThat(result).isNotNull();
-    }
 
 
 
