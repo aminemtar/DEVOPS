@@ -49,6 +49,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	public List<Invoice> getInvoicesBySupplier(Long idSupplier) {
 		Supplier supplier = supplierRepository.findById(idSupplier).orElseThrow(() -> new NullPointerException("Supplier not found"));
 		return (List<Invoice>) supplier.getInvoices();
+
 	}
 
 	@Override
