@@ -51,15 +51,6 @@ public class InvoiceServiceImplTest {
     }
 
 
-
-
-
-
-
-
-
-
-
     @Test
     @DatabaseSetup("/data-set/invoice-data.xml")
     void retrieveInvoice() {
