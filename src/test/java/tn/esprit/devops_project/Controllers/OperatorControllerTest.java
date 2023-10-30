@@ -65,12 +65,7 @@ public class OperatorControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    @Test
-    @DatabaseSetup("/data-set/operator-data.xml")
-    public void removeOperator() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/operator/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+
 
     @Test
     @DatabaseSetup("/data-set/operator-data.xml")

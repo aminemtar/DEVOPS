@@ -10,7 +10,7 @@ pipeline {
               url: 'https://github.com/aminemtar/DEVOPS.git'
             }
         }
-        stage('Unit Tests') {
+  stage('Unit Tests') {
             steps {
                 script {
 
@@ -31,13 +31,13 @@ pipeline {
 
 stage('JUNit Reports') {
             steps {
-                    junit 'target/surefire-reports/*.xml'
+                    junit '**/target/surefire-reports/*.xml'
 		                echo "Publishing JUnit reports"
             }
         }
          stage('Jacoco Reports') {
                     steps {
-                          jacoco(execPattern: '**/target/*.exec',)
+                          jacoco(execPattern: '**/target/*.exec')
                           echo "Publishing Jacoco Code Coverage Reports";
                     }
                 }

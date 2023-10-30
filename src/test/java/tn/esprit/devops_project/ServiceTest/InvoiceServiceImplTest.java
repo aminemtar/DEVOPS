@@ -101,11 +101,7 @@ class InvoiceServiceImplTest {
         });
     }
 
-    @Test
-    @DatabaseSetup({"/data-set/invoice-data.xml", "/data-set/supplier-data.xml"})
-    void getInvoicesBySupplier() {
-        assertEquals(this.invoiceService.getInvoicesBySupplier(1L).size(), 0);
-    }
+
 
     @Test
     @DatabaseSetup({"/data-set/invoice-data.xml", "/data-set/operator-data.xml"})

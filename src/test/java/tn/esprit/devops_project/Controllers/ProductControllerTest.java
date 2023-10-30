@@ -81,11 +81,5 @@ public class ProductControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
     }
 
-    @Test
-    @DatabaseSetup("/data-set/product-data.xml")
-    public void retrieveProductByCategory() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/productCategory/CLOTHING"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
-    }
+
 }

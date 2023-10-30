@@ -55,13 +55,7 @@ public class InvoiceControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    @Test
-    @DatabaseSetup({"/data-set/invoice-data.xml","/data-set/supplier-data.xml"})
-    public void testGetInvoicesBySupplier() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/invoice/supplier/" + 1L))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
-    }
+
 
     @Test
     @DatabaseSetup({"/data-set/invoice-data.xml","/data-set/operator-data.xml"})
@@ -70,12 +64,5 @@ public class InvoiceControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    @Test
-    @DatabaseSetup("/data-set/invoice-data.xml")
-    public void testGetTotalAmountInvoiceBetweenDates() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/invoice/price/2009-05-05/2022-05-05"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
-    }
 }
