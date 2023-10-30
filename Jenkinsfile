@@ -37,9 +37,16 @@ stage('JUNit Reports') {
         }
          stage('Jacoco Reports') {
                     steps {
-                          jacoco(execPattern: '**/target/*.exec')
+
                           echo "Publishing Jacoco Code Coverage Reports";
                     }
+                     post {
+                                                 success {
+                                                     jacoco(
+                                                         execPattern: '**/target/*.exec',
+                                                     )
+                                                 }
+                                             }
                 }
         stage('SonarQube Analysis') {
             steps {
