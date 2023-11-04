@@ -1,7 +1,7 @@
 pipeline {
 
     agent any
-tools { nodejs "NodeJs" }
+tools { nodejs '19.9.0'}
     stages {
 
         stage('Checkout Backend Repo') {
