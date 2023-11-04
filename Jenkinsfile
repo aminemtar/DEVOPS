@@ -63,11 +63,6 @@ stage('JUNit Reports') {
                 url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
 
                 // Install Node.js and npm (if not already installed)
-                sh 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
-                sh 'apt-get install -y nodejs'
-
-                // Install Angular CLI (if not already installed)
-                sh 'npm install -g @angular/cli'
 
                 // Build the Angular frontend
                 sh 'npm install'
