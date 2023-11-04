@@ -69,7 +69,7 @@ stage('JUNit Reports') {
 
                 // Build the Angular frontend
                 sh 'npm install'
-                sh 'ng build --prod'
+                sh 'ng build --configuration=production'
             }
         }
     }
