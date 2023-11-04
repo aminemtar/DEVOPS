@@ -1,7 +1,7 @@
 pipeline {
 
     agent any
-
+tools { nodejs "NodeJs" }
     stages {
 
         stage('Checkout Backend Repo') {
@@ -62,7 +62,10 @@ stage('JUNit Reports') {
                 git branch: 'main',
                 url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
 
-                // Install Node.js and npm (if not already installed)
+
+
+                // Install Angular CLI (if not already installed)
+                sh 'npm install -g @angular/cli'
 
                 // Build the Angular frontend
                 sh 'npm install'
