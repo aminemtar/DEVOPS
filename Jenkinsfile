@@ -61,16 +61,11 @@ stage('JUNit Reports') {
                 // Checkout the Angular frontend repository
                 git branch: 'main',
                 url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
-
-
-
-                // Install Angular CLI (if not already installed)
                 sh 'npm install -g @angular/cli'
-
-                // Build the Angular frontend
                 sh 'npm install'
                 sh 'ng build --configuration=production'
             }
         }
+
     }
  }
