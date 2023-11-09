@@ -59,7 +59,7 @@ stage('JUNit Reports') {
         stage('Build docker image'){
                                 steps{
                                     script{
-                                        sh 'docker build -t devops-project .'
+                                        sh 'docker build -t mtar/devops-project .'
                                     }
                                 }
                             }
@@ -68,7 +68,7 @@ stage('JUNit Reports') {
                    script{
                            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                               sh 'docker login -u mtar -p ${dockerhubpwd}'
-                              sh 'docker push devops-project'
+                              sh 'docker push mtar/devops-project'
                            }
                            }
                    }
