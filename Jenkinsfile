@@ -80,7 +80,7 @@ stage('JUNit Reports') {
                            }
                    }
                    }
-        stage('Build Frontend') {
+      /*  stage('Build Frontend') {
             steps {
                 // Checkout the Angular frontend repository
                 git branch: 'main',
@@ -91,7 +91,7 @@ stage('JUNit Reports') {
                 sh 'docker build . -t mtar/devops'
             }
         }
-
+*/
 
     }
  }
