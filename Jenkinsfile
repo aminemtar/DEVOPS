@@ -88,16 +88,10 @@ stage('JUNit Reports') {
                 sh 'npm install -g @angular/cli'
                 sh 'npm install'
                 sh 'ng build --configuration=production'
+                sh 'docker build -t mtar/devops-frontend.'
             }
         }
-        stage('Build docker image Front') {
-                    steps {
-                        // Checkout the Angular frontend repository
-                        git branch: 'main',
-                        url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
-                        sh 'docker build -t mtar/devopsprojectfront:v1 .'
-                    }
-                }
+
 
     }
  }
