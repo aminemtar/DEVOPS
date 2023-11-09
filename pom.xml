@@ -163,6 +163,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-<finalName>DevOps-Project</finalName>
+<finalName>devops-project</finalName>
     </build>
 </project>
