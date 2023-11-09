@@ -56,6 +56,13 @@ stage('JUNit Reports') {
                 }
             }
         }
+        stage('Build docker image'){
+                                steps{
+                                    script{
+                                        sh 'docker build -t spring-boot-docker .'
+                                    }
+                                }
+                            }
         stage('Build Frontend') {
             steps {
                 // Checkout the Angular frontend repository
