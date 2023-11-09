@@ -88,7 +88,7 @@ stage('JUNit Reports') {
                 sh 'npm install -g @angular/cli'
                 sh 'npm install'
                 sh 'ng build --configuration=production'
-                sh 'docker build -t mtar/devops-frontend .'
+                sh 'docker build -t mtar/devopsprojectfront v1'
             }
         }
 
