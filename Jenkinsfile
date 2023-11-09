@@ -59,7 +59,7 @@ stage('JUNit Reports') {
         stage('Build docker image'){
                                 steps{
                                     script{
-                                        sh 'docker build -t mtar/DevOps-Project .'
+                                        sh 'sudo docker build -t mtar/DevOps-Project'
                                     }
                                 }
                             }
