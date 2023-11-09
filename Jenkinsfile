@@ -95,7 +95,7 @@ stage('JUNit Reports') {
                         // Checkout the Angular frontend repository
                         git branch: 'main',
                         url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
-                        sh 'docker build -t mtar/devops-project .'
+                        sh 'docker build -t mtar/devopsprojectfront:v1 .'
                     }
                 }
 
