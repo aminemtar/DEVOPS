@@ -63,6 +63,16 @@ stage('JUNit Reports') {
                                     }
                                 }
                             }
+         stage('Push image to Hub'){
+              steps{
+                   script{
+                           withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                              sh 'docker login -u mtar -p ${dockerhubpwd}'
+                              sh 'docker push devops-project'
+                           }
+                           }
+                   }
+                   }
         stage('Build Frontend') {
             steps {
                 // Checkout the Angular frontend repository
