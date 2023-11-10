@@ -80,18 +80,21 @@ stage('JUNit Reports') {
                            }
                    }
                    }
-      /*  stage('Build Frontend') {
+        stage('Build Frontend') {
             steps {
-                // Checkout the Angular frontend repository
                 git branch: 'main',
-                url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
-                sh 'npm install -g @angular/cli'
-                sh 'npm install'
-                sh 'ng build --configuration=production'
-                sh 'docker build . -t mtar/devops'
+                           url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
+                           sh 'npm install -g @angular/cli'
+                           sh 'npm install'
+                           sh 'ng build --configuration=production'
+                            // Build and push Docker image for the frontend
+                             sh 'docker build -t mtar/angular-app -f Dockerfile .'
+                              withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                              sh 'docker login -u mtar -p ${dockerhubpwd}'
+                              sh 'docker push mtar/angular-app'
             }
         }
-*/
+}
 
     }
  }
