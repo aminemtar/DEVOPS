@@ -11,6 +11,8 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_PORT: 3306
+    networks:
+      - dev-net
   mysqldb:
     container_name: mysqldb
     image: mysql
@@ -21,8 +23,7 @@ services:
     environment:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
-    networks:
-      - dev-net
+
 
   frontend:
     image: mtar/angular-app:latest
