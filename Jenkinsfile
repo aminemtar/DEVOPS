@@ -88,7 +88,7 @@ stage('JUNit Reports') {
                            sh 'npm install'
                            sh 'ng build --configuration=production'
                             // Build and push Docker image for the frontend
-                             sh 'docker build -t mtar/angular-app -f Dockerfile .'
+                             sh 'docker build --pull --rm -f "summer-workshop-angular/Dockerfile" -t angular-app:latest "summer-workshop-angular"'
                               withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                               sh 'docker login -u mtar -p ${dockerhubpwd}'
                               sh 'docker push mtar/angular-app'
