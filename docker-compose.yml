@@ -22,22 +22,22 @@ services:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - my-network
+      - dev-net
 
   frontend:
     image: mtar/angular-app:latest
     container_name: angular
-    build:
-      context: .
-      dockerfile: Dockerfile.angular
+    volumes: # Volume binding
+      - './angulardockerproject:/usr/src/app'
+    command: >
+      bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
     ports:
-      - "4200:4200"
+      - 4200:4200
     restart: unless-stopped
     depends_on:
       - springboot-app
     networks:
-      - my-network
+      - dev-net
 
 networks:
-  my-network:
-    driver: bridge
+  dev-net:
