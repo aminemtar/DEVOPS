@@ -25,6 +25,9 @@ services:
   frontend:
     image: mtar/angular-app:latest
     container_name: angular
+    build:
+      context: .
+      dockerfile: Dockerfile.angular
     ports:
       - "4200:4200"
     restart: unless-stopped
