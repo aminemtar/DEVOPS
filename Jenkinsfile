@@ -75,6 +75,7 @@ stage('JUNit Reports') {
                    }
                    }
         stage('Build Frontend') {
+        agent any
             steps {
                 git branch: 'main',
                            url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
