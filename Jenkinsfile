@@ -63,13 +63,7 @@ stage('JUNit Reports') {
                                     }
                                 }
                             }
-                            stage('docker-compose  backend'){
-                              steps{
-                               script{
-                                 sh 'docker compose up -d'
-                                  }
-                                    }
-                                    }
+
          stage('Push image to Hub'){
               steps{
                    script{
@@ -94,9 +88,16 @@ stage('JUNit Reports') {
                               sh 'docker login -u mtar -p ${dockerhubpwd}'
                               sh 'docker push mtar/angular-app'
                               }
-            }
-        }
-}
+                       }
+                    }
+                  }
+                   stage('docker-compose  backend'){
+                                                steps{
+                                                 script{
+                                                   sh 'docker compose up -d'
+                                                    }
+                                                      }
+                                                      }
 
     }
  }
