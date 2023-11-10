@@ -22,7 +22,7 @@ services:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - dev-net
+      - my-network
 
   frontend:
     image: mtar/angular-app:latest
@@ -36,10 +36,8 @@ services:
     depends_on:
       - springboot-app
     networks:
-      - dev-net
-
+      - my-network
 
 networks:
-  dev-net:
-volumes:
-  db: {}
+  my-network:
+    driver: bridge
