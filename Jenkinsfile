@@ -13,7 +13,6 @@ tools { nodejs '19.9.0'}
   stage('Unit Tests') {
             steps {
                 script {
-
                     sh 'mvn test'
                 }
             }
@@ -117,16 +116,16 @@ stage('JUNit Reports') {
 
     }
     post {
-                            success {
-                                emailext subject: 'Jenkins build Success',
-                                          body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
-                                          to: '$DEFAULT_RECIPIENTS'
-                            }
+     success {
+      emailext subject: 'Jenkins build Success',
+      body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
+      to: '$DEFAULT_RECIPIENTS'
+       }
 
-                            failure {
-                                emailext subject: 'Jenkins build Failure',
-                                          body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
-                                          to: '$DEFAULT_RECIPIENTS'
+       failure {
+       emailext subject: 'Jenkins build Failure',
+       body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
+        to: '$DEFAULT_RECIPIENTS'
                             }
                         }
  }
