@@ -21,3 +21,12 @@ services:
     environment:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
+
+  frontend:
+    image: mtar/angular-app:latest
+    container_name: angular
+    ports:
+      - "4200:4200"
+    restart: unless-stopped
+    depends_on:
+      - springboot-app
