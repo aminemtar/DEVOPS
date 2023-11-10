@@ -21,6 +21,8 @@ services:
     environment:
       MYSQL_DATABASE: devops
       MYSQL_ROOT_PASSWORD: root
+    networks:
+      - dev-net
 
   frontend:
     image: mtar/angular-app:latest
@@ -33,3 +35,11 @@ services:
     restart: unless-stopped
     depends_on:
       - springboot-app
+    networks:
+      - dev-net
+
+
+networks:
+  dev-net:
+volumes:
+  db: {}
