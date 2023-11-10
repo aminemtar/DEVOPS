@@ -27,6 +27,19 @@ tools { nodejs '19.9.0'}
             steps {
                 sh 'mvn package'
             }
+            post {
+              success {
+                                        emailext subject: 'Jenkins build Success',
+                                                  body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
+                                                  to: '$DEFAULT_RECIPIENTS'
+                                    }
+
+                                    failure {
+                                        emailext subject: 'Jenkins build Failure',
+                                                  body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
+                                                  to: '$DEFAULT_RECIPIENTS'
+                                    }
+                                }
         }
 
 stage('JUNit Reports') {
@@ -101,5 +114,19 @@ stage('JUNit Reports') {
                                                       }
                                                       }
 
+
     }
+    post {
+                            success {
+                                emailext subject: 'Jenkins build Success',
+                                          body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
+                                          to: '$DEFAULT_RECIPIENTS'
+                            }
+
+                            failure {
+                                emailext subject: 'Jenkins build Failure',
+                                          body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
+                                          to: '$DEFAULT_RECIPIENTS'
+                            }
+                        }
  }
