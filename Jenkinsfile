@@ -28,17 +28,17 @@ tools { nodejs '19.9.0'}
             }
             post {
               success {
-                                        emailext subject: 'Jenkins build Success',
-                                                  body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
-                                                  to: '$DEFAULT_RECIPIENTS'
-                                    }
+              emailext subject: 'Jenkins build Success',
+              body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
+               to: '$DEFAULT_RECIPIENTS'
+                        }
 
-                                    failure {
-                                        emailext subject: 'Jenkins build Failure',
-                                                  body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
-                                                  to: '$DEFAULT_RECIPIENTS'
-                                    }
-                                }
+               failure {
+               emailext subject: 'Jenkins build Failure',
+               body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
+               to: '$DEFAULT_RECIPIENTS'
+                         }
+                  }
         }
 
 stage('JUNit Reports') {
@@ -53,12 +53,12 @@ stage('JUNit Reports') {
                           echo "Publishing Jacoco Code Coverage Reports";
                     }
                      post {
-                                                 success {
-                                                     jacoco(
-                                                         execPattern: '**/target/*.exec',
-                                                     )
-                                                 }
-                                             }
+                           success {
+                                   jacoco(
+                                          execPattern: '**/target/*.exec',
+                                          )
+                                   }
+                           }
                 }
         stage('SonarQube Analysis') {
             steps {
@@ -108,7 +108,7 @@ stage('JUNit Reports') {
                    stage('docker-compose  backend'){
                                                 steps{
                                                  script{
-                                                   sh 'docker compose up -d'
+                                                   sh 'docker compose up --build -d'
                                                     }
                                                       }
                                                       }
