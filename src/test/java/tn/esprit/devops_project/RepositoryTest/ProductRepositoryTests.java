@@ -58,4 +58,67 @@ public class ProductRepositoryTests {
         Assertions.assertThat(foundProduct).isNotNull();
         Assertions.assertThat(foundProduct.getIdProduct()).isEqualTo(savedProduct.getIdProduct());
     }
+    @Test
+    public void updateProduct() {
+        // Given
+        Product product = new Product();
+        product.setTitle("Tablet");
+        product.setPrice(299.99f);
+        product.setQuantity(15);
+        product.setCategory(ProductCategory.ELECTRONICS);
+
+        Product savedProduct = productRepository.save(product);
+
+        // When
+        savedProduct.setPrice(249.99f);
+        Product updatedProduct = productRepository.save(savedProduct);
+
+        // Then
+        Assertions.assertThat(updatedProduct).isNotNull();
+        Assertions.assertThat(updatedProduct.getPrice()).isEqualTo(249.99f);
+    }
+    @Test
+    public void deleteProduct() {
+        // Given
+        Product product = new Product();
+        product.setTitle("Headphones");
+        product.setPrice(79.99f);
+        product.setQuantity(30);
+        product.setCategory(ProductCategory.ELECTRONICS);
+
+        Product savedProduct = productRepository.save(product);
+
+        // When
+        productRepository.deleteById(savedProduct.getIdProduct());
+        Product deletedProduct = productRepository.findById(savedProduct.getIdProduct()).orElse(null);
+
+        // Then
+        Assertions.assertThat(deletedProduct).isNull();
+    }
+    @Test
+    public void findProductsByCategory() {
+        // Given
+        Product product1 = new Product();
+        product1.setTitle("Mouse");
+        product1.setPrice(29.99f);
+        product1.setQuantity(50);
+        product1.setCategory(ProductCategory.ELECTRONICS);
+
+        Product product2 = new Product();
+        product2.setTitle("Keyboard");
+        product2.setPrice(49.99f);
+        product2.setQuantity(40);
+        product2.setCategory(ProductCategory.ELECTRONICS);
+
+        productRepository.save(product1);
+        productRepository.save(product2);
+
+        // When
+        String categoryToFind = "ELECTRONICS";
+        Iterable<Product> foundProducts = productRepository.findByCategory(ProductCategory.valueOf(categoryToFind));
+
+        // Then
+        Assertions.assertThat(foundProducts).isNotEmpty();
+        Assertions.assertThat(foundProducts).allMatch(product -> product.getCategory().equals(ProductCategory.valueOf(categoryToFind)));
+    }
 }

@@ -61,18 +61,25 @@ public class StockRepositoryTests {
         Assertions.assertThat(savedStock.getProducts().size()).isEqualTo(2);
     }
     @Test
-    public void findStockById() {
+    public void findStocksByTitleContaining() {
         // Given
-        Stock stock = new Stock();
-        stock.setTitle("Warehouse B");
+        Stock stock1 = new Stock();
+        stock1.setTitle("Warehouse G");
 
-        Stock savedStock = stockRepository.save(stock);
+        Stock stock2 = new Stock();
+        stock2.setTitle("Storage H");
+
+        stockRepository.save(stock1);
+        stockRepository.save(stock2);
 
         // When
-        Stock foundStock = stockRepository.findById(savedStock.getIdStock()).orElse(null);
+        String keyword = "Ware";
+        Iterable<Stock> foundStocks = stockRepository.findByTitleContaining(keyword);
 
         // Then
-        Assertions.assertThat(foundStock).isNotNull();
-        Assertions.assertThat(foundStock.getIdStock()).isEqualTo(savedStock.getIdStock());
+        Assertions.assertThat(foundStocks).isNotEmpty();
+        Assertions.assertThat(foundStocks).allMatch(s -> s.getTitle().contains(keyword));
     }
+
+
 }

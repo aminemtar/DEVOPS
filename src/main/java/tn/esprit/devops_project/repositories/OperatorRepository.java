@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.devops_project.entities.Operator;
 
 public interface OperatorRepository extends CrudRepository<Operator, Long> {
-
+    Iterable<Operator> findByLname(String lname);
+    Iterable<Operator> findByFname(String lname);
 }
