@@ -71,11 +71,11 @@ stage('JUNit Reports') {
         }
         stage('Build docker images'){
 
-                                steps{
-                                    script{
+         steps{
+            script{
 
-                                        sh 'docker build -t mtar/devops-project .'
-                                    }
+             sh 'docker build -t mtar/devops-project .'
+            }
                                     agent any
                                     git branch: 'main',
                                     url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
@@ -84,7 +84,7 @@ stage('JUNit Reports') {
                                     sh 'ng build --configuration=production'
                                     script{
                                      sh 'docker build -t mtar/angular-app -f Dockerfile .'
-                                     }
+         }
                                      }
                             }
 
