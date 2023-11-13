@@ -10,18 +10,6 @@ tools { nodejs '19.9.0'}
               url: 'https://github.com/aminemtar/DEVOPS.git'
             }
         }
-  stage('Unit Tests') {
-            steps {
-                script {
-                    sh 'mvn test'
-                }
-            }
-            post{
-            always{
-            junit '**/target/surefire-reports/TEST-*.xml'
-            }
-            }
-        }
         stage('build') {
             steps {
                 sh 'mvn package'
@@ -40,7 +28,18 @@ tools { nodejs '19.9.0'}
                          }
                   }
         }
-
+ stage('Unit Tests') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+            post{
+            always{
+            junit '**/target/surefire-reports/TEST-*.xml'
+            }
+            }
+        }
 stage('JUNit Reports') {
             steps {
                     junit '**/target/surefire-reports/*.xml'
@@ -68,16 +67,20 @@ stage('JUNit Reports') {
                 }
             }
         }
-        stage('Build docker image'){
+        stage('Build & Push backend image'){
                                 steps{
                                     script{
 
                                         sh 'docker build -t mtar/devops-project .'
+                                          withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                                                                      sh 'docker login -u mtar -p ${dockerhubpwd}'
+                                                                      sh 'docker push mtar/devops-project'
+                                                                   }
                                     }
                                 }
                             }
 
-         stage('Push image to Hub'){
+        /* stage('Push image to Hub'){
               steps{
                    script{
                            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
@@ -86,8 +89,8 @@ stage('JUNit Reports') {
                            }
                            }
                    }
-                   }
-        stage('Build Frontend') {
+                   } */
+        stage('Build & Push Frontend') {
         agent any
             steps {
                 git branch: 'main',
@@ -106,15 +109,13 @@ stage('JUNit Reports') {
                     }
                   }
                    stage('docker-compose  backend'){
-                                                steps{
-                                                 script{
-                                                   sh 'docker compose up --build -d'
-                                                    }
-                                                      }
-                                                      }
-
-
-    }
+                     steps{
+                         script{
+                             sh 'docker compose up --build -d'
+                                 }
+                                 }
+                              }
+                          }
     post {
      success {
       emailext subject: 'Jenkins build Success',
