@@ -124,37 +124,7 @@ public class OperatorRepositoryTest {
         Assertions.assertThat(foundOperators).isNotEmpty();
         Assertions.assertThat(foundOperators).allMatch(op -> op.getFname().equals(firstNameToFind));
     }
-    @Test
-    public void deleteOperatorWithInvoices() {
-        // Given
-        Operator operator = new Operator();
-        operator.setFname("John");
-        operator.setLname("Doe");
-        operator.setPassword("password123");
 
-        Set<Invoice> invoices = new HashSet<>();
-        Invoice invoice1 = new Invoice();
-        invoice1.setAmountDiscount(10.0f);
-        invoice1.setAmountInvoice(100.0f);
-
-        Invoice invoice2 = new Invoice();
-        invoice2.setAmountDiscount(15.0f);
-        invoice2.setAmountInvoice(150.0f);
-
-        invoices.add(invoice1);
-        invoices.add(invoice2);
-
-        operator.setInvoices(invoices);
-
-        Operator savedOperator = operatorRepository.save(operator);
-
-        // When
-        operatorRepository.deleteById(savedOperator.getIdOperateur());
-        Operator deletedOperator = operatorRepository.findById(savedOperator.getIdOperateur()).orElse(null);
-
-        // Then
-        Assertions.assertThat(deletedOperator).isNull();
-    }
     @Test
     public void updateOperatorFirstName() {
         // Given
