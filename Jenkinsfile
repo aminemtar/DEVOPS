@@ -70,12 +70,13 @@ stage('JUNit Reports') {
             }
         }
         stage('Build docker images'){
-        agent any
+
                                 steps{
                                     script{
 
                                         sh 'docker build -t mtar/devops-project .'
                                     }
+                                    agent any
                                     git branch: 'main',
                                     url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
                                     sh 'npm install -g @angular/cli'
