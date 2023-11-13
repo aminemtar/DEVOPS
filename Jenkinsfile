@@ -10,24 +10,6 @@ tools { nodejs '19.9.0'}
               url: 'https://github.com/aminemtar/DEVOPS.git'
             }
         }
-        stage('Build') {
-                    steps {
-                        sh 'mvn package'
-                    }
-                    post {
-                      success {
-                      emailext subject: 'Jenkins build Success',
-                      body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
-                       to: '$DEFAULT_RECIPIENTS'
-                                }
-
-                       failure {
-                       emailext subject: 'Jenkins build Failure',
-                       body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
-                       to: '$DEFAULT_RECIPIENTS'
-                                 }
-                          }
-                }
   stage('Unit Tests') {
             steps {
                 script {
@@ -40,7 +22,24 @@ tools { nodejs '19.9.0'}
             }
             }
         }
+        stage('build') {
+            steps {
+                sh 'mvn package'
+            }
+            post {
+              success {
+              emailext subject: 'Jenkins build Success',
+              body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
+               to: '$DEFAULT_RECIPIENTS'
+                        }
 
+               failure {
+               emailext subject: 'Jenkins build Failure',
+               body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
+               to: '$DEFAULT_RECIPIENTS'
+                         }
+                  }
+        }
 
 stage('JUNit Reports') {
             steps {
@@ -69,26 +68,24 @@ stage('JUNit Reports') {
                 }
             }
         }
-        stage('Build docker images'){
+        stage('Build docker image'){
+                                steps{
+                                    script{
 
-         steps{
-            script{
-
-             sh 'docker build -t mtar/devops-project .'
-            }
-                                    agent any
+                                        sh 'docker build -t mtar/devops-project .'
+                                    }
                                     git branch: 'main',
                                     url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
                                     sh 'npm install -g @angular/cli'
                                     sh 'npm install'
                                     sh 'ng build --configuration=production'
+
                                     script{
                                      sh 'docker build -t mtar/angular-app -f Dockerfile .'
-         }
-                                     }
+                                }
                             }
 
-       /*  stage('Push image to Hub'){
+         stage('Push image to Hub'){
               steps{
                    script{
                            withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
@@ -97,29 +94,27 @@ stage('JUNit Reports') {
                            }
                            }
                    }
-                   } */
-        stage('Push image to Hub') {
+                   }
+        stage('Build Frontend') {
         agent any
             steps {
-            script{
-                      withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                     sh 'docker login -u mtar -p ${dockerhubpwd}'
-                   sh 'docker push mtar/devops-project'
-                  }
-                 }
-                git branch: 'main',
-                 url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
 
-                   script{
-                      sh 'docker build -t mtar/angular-app -f Dockerfile .'
-                        withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                          sh 'docker login -u mtar -p ${dockerhubpwd}'
-                          sh 'docker push mtar/angular-app'
-                           }
+                git branch: 'main',
+                           url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
+                           sh 'npm install -g @angular/cli'
+                           sh 'npm install'
+                           sh 'ng build --configuration=production'
+                            // Build and push Docker image for the frontend
+                            script{
+                             sh 'docker build -t mtar/angular-app -f Dockerfile .'
+                              withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                              sh 'docker login -u mtar -p ${dockerhubpwd}'
+                              sh 'docker push mtar/angular-app'
+                              }
                        }
                     }
                   }
-                   stage('docker-compose up'){
+                   stage('docker-compose  backend'){
                     steps{
                      script{
                       sh 'docker compose up --build -d'
