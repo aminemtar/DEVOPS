@@ -70,6 +70,7 @@ stage('JUNit Reports') {
             }
         }
         stage('Build docker images'){
+        agent any
                                 steps{
                                     script{
 
