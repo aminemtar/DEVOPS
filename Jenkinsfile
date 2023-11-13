@@ -10,24 +10,6 @@ tools { nodejs '19.9.0'}
               url: 'https://github.com/aminemtar/DEVOPS.git'
             }
         }
-         stage('build') {
-                    steps {
-                        sh 'mvn package'
-                    }
-                    post {
-                      success {
-                      emailext subject: 'Jenkins build Success',
-                      body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
-                       to: '$DEFAULT_RECIPIENTS'
-                                }
-
-                       failure {
-                       emailext subject: 'Jenkins build Failure',
-                       body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
-                       to: '$DEFAULT_RECIPIENTS'
-                                 }
-                          }
-                }
   stage('Unit Tests') {
             steps {
                 script {
@@ -40,7 +22,24 @@ tools { nodejs '19.9.0'}
             }
             }
         }
+        stage('build') {
+            steps {
+                sh 'mvn package'
+            }
+            post {
+              success {
+              emailext subject: 'Jenkins build Success',
+              body: 'The Jenkins build  has succeeded. Build URL: ${BUILD_URL}',
+               to: '$DEFAULT_RECIPIENTS'
+                        }
 
+               failure {
+               emailext subject: 'Jenkins build Failure',
+               body: 'The Jenkins build has failed. Build URL: ${BUILD_URL}',
+               to: '$DEFAULT_RECIPIENTS'
+                         }
+                  }
+        }
 
 stage('JUNit Reports') {
             steps {
@@ -75,14 +74,6 @@ stage('JUNit Reports') {
 
                                         sh 'docker build -t mtar/devops-project .'
                                     }
-                                    git branch: 'main',
-                                    url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
-                                    sh 'npm install -g @angular/cli'
-                                    sh 'npm install'
-                                    sh 'ng build --configuration=production'
-
-                                    script{
-                                     sh 'docker build -t mtar/angular-app -f Dockerfile .'
                                 }
                             }
 
@@ -99,7 +90,6 @@ stage('JUNit Reports') {
         stage('Build Frontend') {
         agent any
             steps {
-
                 git branch: 'main',
                            url: 'https://github.com/aminemtar/DEVOPS-FRONTEND.git'
                            sh 'npm install -g @angular/cli'
@@ -116,12 +106,12 @@ stage('JUNit Reports') {
                     }
                   }
                    stage('docker-compose  backend'){
-                    steps{
-                     script{
-                      sh 'docker compose up --build -d'
-                             }
-                           }
-                          }
+                                                steps{
+                                                 script{
+                                                   sh 'docker compose up --build -d'
+                                                    }
+                                                      }
+                                                      }
 
 
     }
