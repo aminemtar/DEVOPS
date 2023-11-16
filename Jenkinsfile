@@ -108,14 +108,22 @@ stage('JUNit Reports') {
                        }
                     }
                   }
-                   stage('docker-compose UP'){
+                   stage('Deploy APP'){
                      steps{
                          script{
-                             sh 'docker compose -f docker-compose-app.yml -f docker-compose-prometheus.yml -f docker-compose-grafana.yml up --build -d'
+                             sh 'docker compose -f docker-compose-app.yml up --build -d'
                                  }
                                  }
                               }
+                               stage('Deploy Prometheus & Graphana'){
+                                                   steps{
+                                                       script{
+                                                           sh 'docker compose  -f docker-compose-prometheus.yml -f docker-compose-grafana.yml up --build -d'
+                                                               }
+                                                               }
+                                                            }
                           }
+
     post {
      success {
       emailext subject: 'Jenkins build Success',
