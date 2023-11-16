@@ -10,7 +10,7 @@ tools { nodejs '19.9.0'}
               url: 'https://github.com/aminemtar/DEVOPS.git'
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
                 sh 'mvn package'
             }
@@ -67,7 +67,7 @@ stage('JUNit Reports') {
                 }
             }
         }
-        stage('Build & Push backend image'){
+        stage('Build & Push to HUB backend'){
                                 steps{
                                     script{
 
@@ -90,7 +90,7 @@ stage('JUNit Reports') {
                            }
                    }
                    } */
-        stage('Build & Push Frontend') {
+        stage('Build & Push to HUB Frontend') {
         agent any
             steps {
                 git branch: 'main',
@@ -108,7 +108,7 @@ stage('JUNit Reports') {
                        }
                     }
                   }
-                   stage('docker-compose  backend'){
+                   stage('docker-compose UP'){
                      steps{
                          script{
                              sh 'docker compose up --build -d'
