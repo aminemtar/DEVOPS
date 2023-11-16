@@ -111,7 +111,7 @@ stage('JUNit Reports') {
                    stage('docker-compose UP'){
                      steps{
                          script{
-                             sh 'docker-compose -f docker-compose-app.yml -f docker-compose-prometheus.yml -f docker-compose-grafana.yml up --build -d'
+                             sh 'docker compose -f docker-compose-app.yml -f docker-compose-prometheus.yml -f docker-compose-grafana.yml up --build -d'
                                  }
                                  }
                               }
